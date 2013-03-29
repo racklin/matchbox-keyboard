@@ -93,6 +93,8 @@ mb_kbd_ui_xft_load_font(MBKeyboardUI *ui)
 
   /* load_font */
 
+  kb->font_pt_size = 14;
+
   snprintf(desc, 512, "%s-%i:%s", 
 	   kb->font_family, kb->font_pt_size, kb->font_variant);
 

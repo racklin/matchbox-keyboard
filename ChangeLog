@@ -1,10 +1,17 @@
+2008-10-02 Rack Lin <racklin@gmail.com>
+  * Added fluxbox / openbox window manager supports.
+  * Added modifiers hide / position / layout
+    - example: layout/keyboard.xml
+  * Added geometry and height factor .
+  * Added Using Droid / unifont as default render font.
+
 2008-02-07  Richard Purdie  <rpurdie@openedhand.com>
 
 	* src/matchbox-keyboard-ui.c:
 	Stop the keyboard scaling beyond a sensible height on wide screens
 
 2007-11-14  Richard Purdie  <rpurdie@openedhand.com>
- 
+
 	* configure.ac:
 	Stop -L/lib being added to compiler commandline and breaking builds
 	$expat variable isn't used.
@@ -33,7 +40,7 @@
 	* src/matchbox-keyboard-remote.h:
 	* src/Makefile.am:
 	Move the remote operations into a separate header.
-	
+
 	* gtk-im/im-protocol.c:
 	* gtk-im/im-context.c:
 	* gtk-im/Makefile.am:
@@ -50,7 +57,7 @@
 	* src/matchbox-keyboard-remote.c:
 	* gtk-im/im-protocol.h:
 	Add a TOGGLE action to the RPC.
-	
+
 	* applet/applet.c:
 	Instead of using a toggle button use an event box, and sent the
 	toggle event.
@@ -75,7 +82,7 @@
 
 2007-09-17  Matthew Allum  <mallum@openedhand.com>
 
-	* src/matchbox-keyboard-key.c: 
+	* src/matchbox-keyboard-key.c:
 	Dont set uneeded shift flag in libfakekey (Daniel Willmann)
 
 2007-07-04  Matthew Allum  <mallum@openedhand.com>
@@ -120,9 +127,9 @@
 	* src/matchbox-keyboard-ui.c:
 	* src/matchbox-keyboard.c:
 	* src/matchbox-keyboard.h:
-	show/hide only when needed. 
+	show/hide only when needed.
 	Add an 'orientaion' switch to limit when keyboard is displayed.
-	(Needs likely be done in a better way but enough for Z's)	
+	(Needs likely be done in a better way but enough for Z's)
 
 2007-05-15  Ross Burton  <ross@openedhand.com>
 
@@ -157,7 +164,7 @@
 	* gtk-im/im-context.[ch]:
 	Derive from GtkIMContextSimple so that editing actually works, and
 	chain up the focus in/out methods.
-	
+
 2007-05-14  Matthew Allum  <mallum@openedhand.com>
 
 	* src/Makefile.am:
@@ -284,7 +291,7 @@
 	(mb_kbd_ui_resize), (mb_kbd_ui_realize):
 	* src/matchbox-keyboard.c: (mb_kbd_new):
 	Minor cleanups. Improve cmd line option parsing and add
-	a usage() func. 
+	a usage() func.
 
 2005-10-26  Matthew Allum  <mallum@openedhand.com>
 
@@ -295,15 +302,15 @@
 2005-10-26  Matthew Allum  <mallum@openedhand.com>
 
 	* AUTHORS:
-	Populate. 	
+	Populate.
 	* Makefile.am:
 	* configure.ac:
 	* src/Makefile.am:
-	Fix cairo build issues, 
+	Fix cairo build issues,
 
 	* src/matchbox-keyboard-xembed.c:
 	Add XEMBED support for embedding keyboard in other apps.
-	
+
 	* examples/Makefile.am:
 	* examples/matchbox-keyboard-embbed.c:
 	Add example embedding app
@@ -341,7 +348,7 @@
 	* src/util.c: (util_utf8_char_cnt), (util_file_readable):
 	Fix GCC 4 Warnings.
 	Add License to all files.
-	Improve buggy cairo backend and add gradient keys 
+	Improve buggy cairo backend and add gradient keys
 
 2005-10-21  Matthew Allum  <mallum@openedhand.com>
 
@@ -363,8 +370,8 @@
 2005-10-10  Matthew Allum  <mallum@openedhand.com>
 
 	* src/matchbox-keyboard-ui.c: (mb_kbd_ui_event_loop):
-	Handle 'stuck' key case ( hopefully ) when release X event is 
-	missed.	
+	Handle 'stuck' key case ( hopefully ) when release X event is
+	missed.
 	* src/matchbox-keyboard.c: (mb_kbd_new):
 	Qucik hacks to look better on small displays.
 
@@ -526,7 +533,7 @@
 	* src/matchbox-keyboard-ui.c: (mb_kbd_ui_redraw),
 	(mb_kbd_ui_resources_create), (mb_kbd_ui_resize):
 	* src/matchbox-keyboard.h:
-	Various minor tweaks. 
+	Various minor tweaks.
 
 2005-04-21  mallum,,,  <mallum@openedhand.com>
 
@@ -576,7 +583,7 @@
 	(mb_kbd_ui_resources_create):
 	* src/matchbox-keyboard.c: (mb_kbd_add_state):
 	* src/matchbox-keyboard.h:
-	Fix caps handling and modifier toggling. 
+	Fix caps handling and modifier toggling.
 	Add a chunk of WM handling and 'co-operation'.
 
 2005-04-18  mallum,,,  <mallum@openedhand.com>
@@ -654,7 +661,7 @@
 	(mb_kbd_ui_send_press), (mb_kbd_ui_events_iteration):
 	* src/matchbox-keyboard.c: (mb_kbd_locate_key):
 	* src/matchbox-keyboard.h:
-	Fix locate_key(). Handle press/release cycle better 
+	Fix locate_key(). Handle press/release cycle better
 
 2005-04-13  mallum,,,  <mallum@openedhand.com>
 

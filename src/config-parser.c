@@ -73,7 +73,8 @@ MBKeyboardKeysymLookup[] =
  { XK_Scroll_Lock, "scrolllock" },	
  { XK_Sys_Req,     "sysreq" },
  { XK_Escape,      "escape" },	
- { XK_Delete,      "delete" },	
+ { XK_Delete,      "delete" },
+ { XK_Insert,      "insert"},	
  { XK_Home,        "home" },
  { XK_Left,        "left" },
  { XK_Up,          "up"   },
@@ -86,6 +87,7 @@ MBKeyboardKeysymLookup[] =
  { XK_End,         "end" },
  { XK_Begin,	   "begin" },
  { XK_space,        "space" },
+ { XK_Cancel,       "close" },
  { XK_F1,          "f1" },
  { XK_F2,          "f2" },
  { XK_F3,          "f3" },
@@ -113,7 +115,11 @@ ModLookup[] =
   { "mod1",    MBKeyboardKeyModMod1 },
   { "mod2",    MBKeyboardKeyModMod2 },
   { "mod3",    MBKeyboardKeyModMod3 },
-  { "caps",    MBKeyboardKeyModCaps }
+  { "caps",    MBKeyboardKeyModCaps },
+  { "layout",  MBKeyboardKeyModLayout },
+  { "hide",    MBKeyboardKeyModHide },
+  { "position",    MBKeyboardKeyModPosition }
+
 };
 
 typedef struct MBKeyboardConfigState

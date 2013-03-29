@@ -25,10 +25,15 @@ mb_kbd_usage (char *progname)
   fprintf(stderr, "Usage:\n   %s [Options ] [ Layout Variant ]\n", progname);
   fprintf(stderr, "\nOptions are;\n"
 	  "   -xid,--xid            Print window ID to stdout ( for embedding )\n"
+	  "   -w,--width            Max Width of keyboard\n"
+	  "   -h,--height           Max Height of keyboard\n"
 	  "   -d,--daemon           Run in 'daemon' mode (for remote control)\n"
 	  "   -o,--orientation <portrait|landscape>\n"
-          "                         Use to limit visibility with screen orientation \n");
+          "                         Use to limit visibility with screen orientation \n"
+          "   -hf,--hfactor <percent>\n");
   fprintf(stderr, "\nmatchbox-keyboard %s \nCopyright (C) 2007 OpenedHand Ltd.\n", VERSION);
+
+  fprintf(stderr, "\n\nRack Lin 2008 patched with width, height, hide,position.\n");
 
   exit(-1);
 }
@@ -51,9 +56,12 @@ mb_kbd_new (int argc, char **argv)
   kb->col_spacing = 5;
   kb->row_spacing = 5;
 
-  kb->font_family  = strdup("sans");
-  kb->font_pt_size = 5;
+//  kb->font_family  = strdup("sans");
+  //kb->font_family  = strdup("Droid Sans Fallback");
+  kb->font_family  = strdup("unifont");
+  kb->font_pt_size = 14;
   kb->font_variant = strdup("bold");
+
 
   for (i = 1; i < argc; i++) 
     {
@@ -62,6 +70,31 @@ mb_kbd_new (int argc, char **argv)
 	  want_embedding = True;
 	  continue;
 	}
+
+      if (streq ("-w", argv[i]) || streq ("--width", argv[i])) {
+	  if (i + 1 < argc) {
+              kb->max_width = atoi(argv[i + 1]);
+              i++;
+          }
+          continue;
+      }
+
+      if (streq ("-h", argv[i]) || streq ("--height", argv[i])) {
+	  if (i + 1 < argc) {
+              kb->max_height = atoi(argv[i + 1]);
+              i++;
+          }
+          continue;
+      }
+
+      if (streq ("-hf", argv[i]) || streq ("--hfactor", argv[i])) 
+      {
+        if (i + 1 < argc) {
+          kb->hfactor = atoi(argv[i + 1]);
+          i++;
+        }
+        continue;
+      }
 
       if (streq ("-d", argv[i]) || streq ("--daemon", argv[i])) 
 	{
@@ -113,6 +146,8 @@ mb_kbd_new (int argc, char **argv)
 
   kb->selected_layout 
     = (MBKeyboardLayout *)util_list_get_nth_data(kb->layouts, 0);
+
+  kb->selected_layout_no = 0;
 
   if (want_embedding)
     mb_kbd_ui_set_embeded (kb->ui, True);

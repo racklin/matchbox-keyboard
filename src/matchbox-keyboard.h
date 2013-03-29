@@ -41,6 +41,7 @@
 #include <X11/Xatom.h>
 #include <X11/Xresource.h>
 #include <X11/keysym.h>
+#include <X11/extensions/Xrender.h>
 
 #include <fakekey/fakekey.h>
 
@@ -101,8 +102,9 @@ typedef enum
   MBKeyboardKeyModCaps,
   MBKeyboardKeyModControl,
   MBKeyboardKeyModAlt,
-  MBKeyboardKeyModLayout
-
+  MBKeyboardKeyModLayout,
+  MBKeyboardKeyModHide,
+  MBKeyboardKeyModPosition
 } MBKeyboardKeyModType;
 
 typedef enum 
@@ -152,12 +154,16 @@ struct MBKeyboard
   char                  *font_family;
   int                    font_pt_size;
   char                  *font_variant;
+  int                    hfactor;
   char                  *config_file;
   List                  *layouts;
   MBKeyboardLayout      *selected_layout;
+  int			 selected_layout_no;
+  int			 max_width, max_height;
   int                    key_border, key_pad, key_margin;
   int                    row_spacing, col_spacing;
   boolean                extended; /* are we showing extended keys ? */
+  boolean                exitflag; /* set exit flag */ 
   MBKeyboardKey         *held_key;
   MBKeyboardStateType    keys_state;
 };
@@ -184,6 +190,8 @@ mb_kbd_ui_init(MBKeyboard *kbd);
 void
 mb_kbd_ui_limit_orientation (MBKeyboardUI                *ui, 
 			     MBKeyboardDisplayOrientation orientation);
+void
+mb_kbd_ui_recalc_ui_layout(MBKeyboardUI *ui);
 
 int
 mb_kbd_ui_realize(MBKeyboardUI  *ui);

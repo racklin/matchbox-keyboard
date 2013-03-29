@@ -454,6 +454,10 @@ mb_kbd_key_press(MBKeyboardKey *key)
 	KeySym ks;
 	if ((ks = mb_kbd_key_get_keysym_action(key, state)) != None)
 	  {
+	    if( XK_Cancel == ks)	
+            {
+               key->kbd->exitflag = True;
+            } 
 	    mb_kbd_ui_send_keysym_press(key->kbd->ui, ks, flags);
 	    mb_kbd_set_held_key(key->kbd, key);
 	  }
@@ -489,6 +493,22 @@ mb_kbd_key_press(MBKeyboardKey *key)
 	    break;
 	  case MBKeyboardKeyModAlt:
 	    mb_kbd_toggle_state(key->kbd, MBKeyboardStateAlt);
+	    break;
+          case MBKeyboardKeyModLayout:
+	    key->kbd->selected_layout_no++;
+	    if (key->kbd->selected_layout_no >= util_list_length(key->kbd->layouts))
+	        key->kbd->selected_layout_no = 0;
+            key->kbd->selected_layout = 
+		(MBKeyboardLayout *)util_list_get_nth_data(key->kbd->layouts, 
+							   key->kbd->selected_layout_no);
+            mb_kbd_ui_recalc_ui_layout(key->kbd->ui);
+            queue_full_kbd_redraw = True;
+	    break;
+	  case MBKeyboardKeyModHide:
+            mb_kbd_ui_hide (key->kbd->ui);
+	    break;
+	  case MBKeyboardKeyModPosition:
+            mb_kbd_ui_position (key->kbd->ui);
 	    break;
 	  default:
 	    DBG("unknown modifier action");
